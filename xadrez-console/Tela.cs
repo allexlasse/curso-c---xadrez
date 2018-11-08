@@ -88,16 +88,25 @@ namespace xadrez_console
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
             Console.WriteLine("Aguardo jogada: " + partida.jogadorAtual);
+            if (partida.xeque)
+            {
+                Console.WriteLine("XEQUE");
+            }
         }
 
         public static void imprimirPecasCapturadas(PartidaDeXadrez partida)
         {
+            ConsoleColor original = Console.ForegroundColor;
+            ConsoleColor alterado = ConsoleColor.Yellow;
+            
             Console.WriteLine("Peças Capturadas: ");
             Console.Write("Brancas: ");
             imprimirConjunto(partida.pecasCapturadas(Cor.Branco));
             Console.WriteLine();
+            Console.ForegroundColor = alterado;
             Console.Write("Pretas: ");
             imprimirConjunto(partida.pecasCapturadas(Cor.Preto));
+            Console.ForegroundColor = original;
             Console.WriteLine();
         }
 
