@@ -79,7 +79,7 @@ namespace xadrez_console
             return new PosicaoXadrez(coluna, linha);
         }
 
-        public static void imrpimirPartida(PartidaDeXadrez partida)
+        public static void imprimirPartida(PartidaDeXadrez partida)
         {
             imprimirTabuleiro(partida.tab);
 
@@ -87,11 +87,20 @@ namespace xadrez_console
             imprimirPecasCapturadas(partida);
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardo jogada: " + partida.jogadorAtual);
-            if (partida.xeque)
+            if (!partida.terminada)
             {
-                Console.WriteLine("XEQUE");
+                Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                if (partida.xeque)
+                {
+                    Console.WriteLine("XEQUE");
+                }
             }
+            else
+            {
+                Console.WriteLine("XEQUEMATE");
+                Console.WriteLine("VENCEDOR: " + partida.jogadorAtual);
+            }
+            
         }
 
         public static void imprimirPecasCapturadas(PartidaDeXadrez partida)
